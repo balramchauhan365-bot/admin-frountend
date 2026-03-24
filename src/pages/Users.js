@@ -6,15 +6,17 @@ function Users() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const API_URL = "http://localhost:5000/users";
+  const API_URL = "https://backend-addmin-2.onrender.com/users";
 
   const fetchUsers = async () => {
     try {
       setLoading(true);
       const res = await fetch(API_URL);
       if (!res.ok) throw new Error("Failed to fetch users");
+
       const data = await res.json();
-      setUsers(data.data || []);
+      setUsers(data || []);   // ✅ FIX
+
     } catch (err) {
       console.error(err);
       setUsers([]);
@@ -31,6 +33,7 @@ function Users() {
     try {
       const res = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
       if (!res.ok) throw new Error("Failed to delete user");
+
       fetchUsers();
     } catch (err) {
       console.error(err);

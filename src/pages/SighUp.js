@@ -23,7 +23,11 @@ function SignUp({ onSignup }) {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:5000/signup", formData);
+      const res = await axios.post(
+        "https://backend-addmin-2.onrender.com/signup",
+        formData
+      );
+
       alert(res.data.message);
       onSignup();
     } catch (err) {

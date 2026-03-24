@@ -6,15 +6,20 @@ function UserDetails() {
 
   const fetchUsers = async () => {
     try {
-      const token = localStorage.getItem("token"); // agar login system use ho raha hai
-      const res = await fetch("http://localhost:5000/api/users", {
+      const token = localStorage.getItem("token");
+
+      const res = await fetch("https://backend-addmin-2.onrender.com/users", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+
       if (!res.ok) throw new Error("Failed to fetch users");
+
       const data = await res.json();
-      setUsers(data.data || []);
+
+      // 👇 backend direct array return kar raha hai
+      setUsers(data || []);
     } catch (err) {
       console.error(err);
       setUsers([]);

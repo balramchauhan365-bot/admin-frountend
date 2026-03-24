@@ -6,7 +6,7 @@ function Login({ onLogin }) {
 
   const handleLogin = async () => {
     try {
-      const res = await fetch("http://localhost:5000/login", {
+      const res = await fetch("https://backend-addmin-2.onrender.com/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -18,7 +18,7 @@ function Login({ onLogin }) {
         localStorage.setItem("user", JSON.stringify(data.user));
         onLogin(data.user);
       } else {
-        alert(data.error || "Login failed");
+        alert(data.message || "Login failed");
       }
     } catch (err) {
       console.error("Login error:", err);
@@ -34,9 +34,23 @@ function Login({ onLogin }) {
           <span className="logo-right">COMMERCE</span>
         </div>
         <p className="login-subtitle">Admin Panel Login</p>
-        <input type="email" placeholder="Enter Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input type="password" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+
+        <input
+          type="email"
+          placeholder="Enter Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <input
+          type="password"
+          placeholder="Enter Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
         <button onClick={handleLogin}>Login</button>
+
         <p className="login-footer">© 2025 E-Commerce Admin</p>
       </div>
     </div>

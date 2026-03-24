@@ -29,15 +29,21 @@ function AddProduct({ editProduct }) {
       let res;
 
       if (editProduct) {
-        res = await fetch(`http://localhost:5000/products/${editProduct.id}`, {
+        res = await fetch(`https://backend-addmin-2.onrender.com/products/${editProduct.id}`, {
           method: "PUT",
-          headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+          headers: { 
+            "Content-Type": "application/json", 
+            Authorization: `Bearer ${token}` 
+          },
           body: JSON.stringify(productData),
         });
       } else {
-        res = await fetch("http://localhost:5000/products", {
+        res = await fetch("https://backend-addmin-2.onrender.com/products", {
           method: "POST",
-          headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+          headers: { 
+            "Content-Type": "application/json", 
+            Authorization: `Bearer ${token}` 
+          },
           body: JSON.stringify(productData),
         });
       }

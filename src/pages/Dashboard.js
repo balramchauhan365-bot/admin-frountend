@@ -1,12 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Users from "./Users";
 import Products from "./Products";
 import { useNavigate } from "react-router-dom";
 
-function Dashboard({ users, products }) {
+function Dashboard() {
   const navigate = useNavigate();
 
-  const [page, setPage] = useState("dashboard");
+  const [page] = useState("dashboard");
+  const [users, setUsers] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  const BASE_URL = "https://backend-addmin-2.onrender.com";
+
+  useEffect(() => {
+    fetch(`${BASE_URL}/users`)
+      .then(res => res.json())
+      .then(data => setUsers(data))
+      .catch(err => console.error(err));
+
+    fetch(`${BASE_URL}/products`)
+      .then(res => res.json())
+      .then(data => setProducts(data))
+      .catch(err => console.error(err));
+  }, []);
+
   return (
     <div className="dashboard">
 
@@ -17,27 +34,14 @@ function Dashboard({ users, products }) {
           <span className="logo-right">COMMERCE</span>
         </div>
 
-        <button
-
-          onClick={() => {
-            // setEditUser(null);
-            navigate("/users");
-          }}
-        >
+        <button onClick={() => navigate("/users")}>
           users
         </button>
       
-        <button
-
-          onClick={() => {
-            // setEditUser(null);
-            navigate("/products");
-          }}
-        >
+        <button onClick={() => navigate("/products")}>
           product
         </button>
       </div>
-
 
       {/* CENTER CONTENT */}
       <div className="content">
@@ -47,21 +51,16 @@ function Dashboard({ users, products }) {
           <div className="cards">
             <div className="card">
               <h3>Total Users</h3>
-              <p onClick={() => {
-                navigate("/users");
-              }}
-              >{users?.length} </p>
+              <p onClick={() => navigate("/users")}>
+                {users?.length}
+              </p>
             </div>
 
             <div className="card">
               <h3>Total Products</h3>
-              <p  
-          onClick={() => {
-            navigate("/products");
-          }}
-        >
-       
-        {products?.length}</p>
+              <p onClick={() => navigate("/products")}>
+                {products?.length}
+              </p>
             </div>
           </div>
         )}

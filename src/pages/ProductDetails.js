@@ -9,15 +9,19 @@ function ProductsDetails() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const token = localStorage.getItem("token"); // agar login use ho raha hai
-        const res = await fetch("http://localhost:5000/api/products", {
+        const token = localStorage.getItem("token");
+
+        const res = await fetch("https://backend-addmin-2.onrender.com/products", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
+
         const data = await res.json();
-        if (res.ok && data.success) {
-          setProducts(data.data);
+
+        // 👇 backend direct array return kar raha hai
+        if (res.ok) {
+          setProducts(data);
         } else {
           setProducts([]);
         }
@@ -55,7 +59,10 @@ function ProductsDetails() {
             <p style={styles.price}>Price: ₹{product.price}</p>
             {product.size && <p style={styles.info}>Size: {product.size}</p>}
             {product.colour && <p style={styles.info}>Colour: {product.colour}</p>}
-            <button style={styles.button} onClick={() => navigate(`/products/${product.id}`)}>
+            <button
+              style={styles.button}
+              onClick={() => navigate(`/products/${product.id}`)}
+            >
               View Details
             </button>
           </div>
