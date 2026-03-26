@@ -25,7 +25,7 @@ function AddUser({ editUser }) {
 
       if (editUser) {
 
-        res = await fetch(`http://localhost:5000/users/${editUser.id}`, {
+        res = await fetch(`https://backend-addmin-2.onrender.com/users/${editUser.id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json"
@@ -35,7 +35,7 @@ function AddUser({ editUser }) {
 
       } else {
 
-        res = await fetch("http://localhost:5000/signup", {
+        res = await fetch("https://backend-addmin-2.onrender.com/signup", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"

@@ -1,12 +1,9 @@
 import { useState, useEffect } from "react";
-import Users from "./Users";
-import Products from "./Products";
 import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
   const navigate = useNavigate();
 
-  const [page] = useState("dashboard");
   const [users, setUsers] = useState([]);
   const [products, setProducts] = useState([]);
 
@@ -27,50 +24,32 @@ function Dashboard() {
   return (
     <div className="dashboard">
 
-      {/* LEFT SIDEBAR */}
       <div className="sidebar">
         <div className="ecom-logo sidebar-logo">
           <span className="logo-left">E</span>
           <span className="logo-right">COMMERCE</span>
         </div>
 
-        <button onClick={() => navigate("/users")}>
-          users
-        </button>
-      
-        <button onClick={() => navigate("/products")}>
-          product
-        </button>
+        <button onClick={() => navigate("/users")}>Users</button>
+        <button onClick={() => navigate("/products")}>Products</button>
       </div>
 
-      {/* CENTER CONTENT */}
       <div className="content">
-
-        {/* DEFAULT DASHBOARD */}
-        {page === "dashboard" && (
-          <div className="cards">
-            <div className="card">
-              <h3>Total Users</h3>
-              <p onClick={() => navigate("/users")}>
-                {users?.length}
-              </p>
-            </div>
-
-            <div className="card">
-              <h3>Total Products</h3>
-              <p onClick={() => navigate("/products")}>
-                {products?.length}
-              </p>
-            </div>
+        <div className="cards">
+          <div className="card">
+            <h3>Total Users</h3>
+            <p onClick={() => navigate("/users")}>
+              {users?.length}
+            </p>
           </div>
-        )}
 
-        {/* USER LIST */}
-        {page === "users" && <Users />}
-
-        {/* PRODUCT LIST */}
-        {page === "products" && <Products />}
-
+          <div className="card">
+            <h3>Total Products</h3>
+            <p onClick={() => navigate("/products")}>
+              {products?.length}
+            </p>
+          </div>
+        </div>
       </div>
 
     </div>

@@ -6,17 +6,20 @@ function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const BASE_URL = "https://backend-addmin-2.onrender.com";
+
   const fetchProducts = async () => {
     try {
-      const token = localStorage.getItem("token"); // agar login system use ho raha hai
-      const res = await fetch("http://localhost:5000/products", {
+      const token = localStorage.getItem("token");
+
+      const res = await fetch(`${BASE_URL}/products`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
       const data = await res.json();
-      setProducts(data);   // 🔧 change
+      setProducts(data);
     } catch (err) {
       console.error(err);
     } finally {
@@ -34,7 +37,7 @@ function Products() {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await fetch(`http://localhost:5000/products/${id}`, {  // 🔧 change
+      const res = await fetch(`${BASE_URL}/products/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
