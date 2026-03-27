@@ -14,7 +14,7 @@ import UserDetails from "./pages/UserDetails";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
-  const [isSignup, setIsSignup] = useState(true); // ✅ Signup pehle open hoga
+  const [isSignup, setIsSignup] = useState(true);
 
   /* ================= USERS ================= */
   const [users, setUsers] = useState(
@@ -27,9 +27,7 @@ function App() {
     localStorage.setItem("users", JSON.stringify(users));
   }, [users]);
 
-  const addUser = (user) => {
-    setUsers([...users, user]);
-  };
+  const addUser = (user) => setUsers([...users, user]);
 
   const deleteUser = (id) => {
     setUsers(users.filter((u) => u.id !== id));
@@ -37,7 +35,9 @@ function App() {
 
   const updateUser = (updatedUser) => {
     setUsers(
-      users.map((u) => (u.id === updatedUser.id ? updatedUser : u))
+      users.map((u) =>
+        u.id === updatedUser.id ? updatedUser : u
+      )
     );
     setEditUser(null);
   };
@@ -78,7 +78,9 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Dashboard users={users} products={products} />}
+            element={
+              <Dashboard users={users} products={products} />
+            }
           />
 
           {/* USERS */}
@@ -134,7 +136,9 @@ function App() {
 
           <Route
             path="/product/:id"
-            element={<ProductDetails products={products} />}
+            element={
+              <ProductDetails products={products} />
+            }
           />
         </Routes>
       )}

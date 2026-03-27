@@ -6,11 +6,16 @@ function Login({ onLogin }) {
 
   const handleLogin = async () => {
     try {
-      const res = await fetch("https://backend-addmin-2.onrender.com/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+      const res = await fetch(
+        "https://backend-addmin-2.onrender.com/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
       const data = await res.json();
 
@@ -29,10 +34,12 @@ function Login({ onLogin }) {
   return (
     <div className="login-container">
       <div className="login-form">
+        
         <div className="ecom-logo">
           <span className="logo-left">E</span>
           <span className="logo-right">COMMERCE</span>
         </div>
+
         <p className="login-subtitle">Admin Panel Login</p>
 
         <input
@@ -49,9 +56,14 @@ function Login({ onLogin }) {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button onClick={handleLogin}>Login</button>
+        <button onClick={handleLogin}>
+          Login
+        </button>
 
-        <p className="login-footer">© 2025 E-Commerce Admin</p>
+        <p className="login-footer">
+          © 2025 E-Commerce Admin
+        </p>
+
       </div>
     </div>
   );

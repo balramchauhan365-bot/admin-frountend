@@ -3,7 +3,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function SignUp({ onSignup }) {
-
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -37,12 +36,10 @@ function SignUp({ onSignup }) {
 
   return (
     <div style={styles.container}>
-      
       <div style={styles.card}>
         <h2 style={styles.title}>Create Account</h2>
 
         <form onSubmit={handleSubmit}>
-
           <input
             type="text"
             name="name"
@@ -78,15 +75,13 @@ function SignUp({ onSignup }) {
         <p style={styles.footer}>
           Already have an account?
           <span
-            onClick={() => navigate("/login")}
+            onClick={onSignup}   // ✅ FIXED
             style={styles.link}
           >
             Login
           </span>
         </p>
-
       </div>
-
     </div>
   );
 }
