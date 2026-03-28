@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+// ❌ remove this line
+// import { useNavigate } from "react-router-dom";
 
 function SignUp({ onSignup }) {
-  const navigate = useNavigate();
+  // ❌ remove this line
+  // const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -75,7 +77,7 @@ function SignUp({ onSignup }) {
         <p style={styles.footer}>
           Already have an account?
           <span
-            onClick={onSignup}   // ✅ FIXED
+            onClick={onSignup}   // ✅ correct
             style={styles.link}
           >
             Login
